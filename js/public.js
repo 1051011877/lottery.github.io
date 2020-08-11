@@ -1,4 +1,4 @@
-var prodServer = 'http://192.168.43.199:3000'
+var prodServer = 'http://49.235.80.50:3000'
 
 function getInfo(url,type,data){
 	return new Promise(function(resolve,reject) {
