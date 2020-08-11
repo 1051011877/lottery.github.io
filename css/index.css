@@ -1,0 +1,125 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 50px;
+}
+li {
+  list-style: none;
+}
+header {
+  width: 100%;
+  text-align: center;
+  font-size: 1rem;
+}
+.section {
+  overflow: hidden;
+  width: 100%;
+}
+.section .column {
+  width: 100%;
+  flex: 3;
+}
+.section .column .panle {
+  position: relative;
+  height: 350px;
+  margin: 0.25rem 0;
+  padding: 0.125rem;
+  border: 1px solid rgba(25, 186, 139, 0.7);
+}
+.section .column .panle h2 {
+  text-align: center;
+  font-size: 0.8rem;
+}
+.section .column .panle .chart {
+  height: 300px;
+}
+.section .column .panle::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  content: "";
+  color: white;
+  border-left: 2px solid #02a6b5;
+  border-top: 2px solid #02a6b5;
+}
+.section .column .panle::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  content: "";
+  color: white;
+  border-right: 2px solid #02a6b5;
+  border-top: 2px solid #02a6b5;
+}
+.section .column .panle .panel-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+.section .column .panle .panel-footer::before {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  content: "";
+  color: white;
+  border-left: 2px solid #02a6b5;
+  border-bottom: 2px solid #02a6b5;
+}
+.section .column .panle .panel-footer::after {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  content: "";
+  color: white;
+  border-bottom: 2px solid #02a6b5;
+  border-right: 2px solid #02a6b5;
+}
+.section #app .list-top {
+  width: 100%;
+  padding: 0.5875rem 0.1875rem;
+  margin: 0.125rem 0;
+  font-size: 1rem;
+  border: 1px solid gainsboro;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.section #app .list-top .list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.section #app .list-top .list .ball span {
+  margin: 5px 2px ;
+  margin-right: 2px;
+}
+.section #app .list-top .button {
+  font-size: 1rem;
+}
+.toTop {
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  right: 20px;
+  bottom: 100px;
+  z-index: 999;
+}
