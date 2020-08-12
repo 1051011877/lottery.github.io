@@ -72,10 +72,10 @@
 							 <span style="color: gainsboro;">(开奖)</span>
 							</div>
 						</div>
-						<div class="list" v-for="(item2,index2) in item.forecast">
+						<div class="list" v-for="(item2,index2) in Forecast" v-if="item.phase === item2.phase" >
 							<div class="ball" >
-							 <span  v-for="(item4,index4) in item2.redBall" class="mui-badge mui-badge-danger">{{item4}}</span>
-							 <span v-for="(item5,index5) in item2.blueBall" class="mui-badge mui-badge-primary">{{item5}}</span>
+							 <span  v-for="(item4,index4) in item2.forecastBlueBall" class="mui-badge mui-badge-danger">{{item4}}</span>
+							 <span v-for="(item5,index5) in item2.forecastRedBall" class="mui-badge mui-badge-primary">{{item5}}</span>
 							 <span style="color: gainsboro;">(预测)</span>
 							</div>
 						</div>
@@ -99,9 +99,10 @@
 		    el: '#app',
 		    data: {
 				list:[],
-			  form: {
-			   name: '',
-			 },
+				Forecast:[],
+				form: {
+				   name: '',
+				},
 		    },
 			created(){
 				this.getList()
@@ -112,8 +113,19 @@
 						 let result = data.data
 						 result.sort(this.sortId); //排序
 						 this.list = result
-						 console.log(result)
 					 })
+					 if(localStorage.getItem('email')){
+						 selectForecast({email:localStorage.getItem('email')}).then((data)=>{
+							 if(data.code===200){
+								 let result = data.data
+								 result.sort(this.sortId); //排序
+								 this.Forecast = result
+								 console.log(result)
+							 }else{
+								  //mui.toast(data.msg) 
+							 }
+						 })
+					 }
 				 },
 				 sortId(a,b){ //json数组排序
 				   return b.phase-a.phase

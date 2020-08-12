@@ -1,4 +1,4 @@
-var prodServer = 'http://49.235.80.50:3000'
+var prodServer = 'http://localhost:3000'
 
 function getInfo(url,type,data){
 	return new Promise(function(resolve,reject) {
@@ -30,8 +30,17 @@ function selectLottery(data){ //获取彩票数据
 	   })
 	});
 }
+function selectForecast(data){ //获取预测彩票数据
+	 return new Promise(function(resolve,reject) {
+	   getInfo(prodServer+"/lottery/selectForecast",'POST',data).then((data)=>{
+		   resolve(data)
+	   }).catch((err)=>{
+		   reject(err)
+	   })
+	});
+}
 
-function addLottery(data){ //获取彩票数据
+function addLottery(data){ //添加彩票数据
 	 return new Promise(function(resolve,reject) {
 	   getInfo(prodServer+"/lottery/addLottery",'POST',data).then((data)=>{
 		   resolve(data)

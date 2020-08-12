@@ -65,9 +65,18 @@
 							</li>
 						</ul>
 					</div>
+					<form class="mui-input-group" style="width: 100%;">
+					    <div class="mui-input-row" style="width: 100%;">
+					        <label>邮箱地址：</label>
+					    <input type="email" name="email" class="mui-input-clear" placeholder="请输入邮箱地址">
+					    </div>
+					    <div class="mui-button-row">
+							<button type="button" class="mui-btn cancel mui-btn-danger" >取消</button>
+					        <button onclick="submit()" type="button" data-loading-icon-position="right" class="mui-btn submit mui-btn-primary">确认提交</button>
+					    </div>
+					</form>
 					<!--页脚，放置补充信息或支持的操作-->
 					<div class="mui-card-footer">
-						<button onclick="submit()" type="button" data-loading-icon-position="right" class="mui-btn">确认提交</button>
 					</div>
 				</div>
 				
@@ -153,6 +162,10 @@
 					}
 				}
 			});
+			let email = localStorage.getItem('email')
+			if(email){
+				$('input[type=email][name=email]').val(email)
+			}
 			/**
 			 * 下拉刷新具体业务实现
 			 */
@@ -189,7 +202,7 @@
 				}, 1000);
 			}
 			
-			function add(){
+			function generateBall(){ 
 				var checkboxRed = document.body.querySelector('.checkbox-list');
 				var checkboxBlue = document.body.querySelector('.checkbox-list-blue');
 				for(var i = 0;i<33; i++) {
@@ -206,29 +219,46 @@
 					checkboxBlue.appendChild(div);
 				}
 			}
-			add()
+			generateBall()
 			function PrefixZero(num, n) {//设置位数，不足用0补齐
 			    return (Array(n).join(0) + num).slice(-n);
 			}
-			mui(document.body).on('tap', '.mui-btn', function(e) {
+			 function IsEmail(str) { //邮箱验证
+				 var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+				return  reg.test(str);
+			 }
+			mui(document.body).on('tap', '.submit', function(e) { //确定按钮
 			    mui(this).button('loading');
 				let checkboxRed =$('input[type=checkbox]:checked[name=checkbox1]');
 				let checkboxBlue = $('input[type=checkbox]:checked[name=checkbox2]');
 				let redList = []
 				let blueList = []
+				let email = $('input[type=email][name=email]').val()
+				localStorage.setItem('email',email)
 				checkboxRed.map((index,item,arr)=>{
 					redList.push($(item).val())
 				})
 				checkboxBlue.map((index,item,arr)=>{
 					blueList.push($(item).val())
 				})
-				console.log(localStorage.getItem('nextPhase'));//下一期
-				console.log(redList)
-				console.log(blueList)
+				if(redList.length===0){
+					mui.toast("请选择红球！")
+					mui(this).button('reset');
+					return
+				}else if(blueList.length===0){
+					mui.toast("请选择蓝球！")
+					mui(this).button('reset');
+					return
+				}else if(!IsEmail(email)){
+					 mui.toast("请填写正确的邮箱地址！") 
+					 mui(this).button('reset');
+					return
+				}
 				let queryData = {
 					blueBall:blueList,
 					redBall:redList,
-					phase:localStorage.getItem('nextPhase')
+					phase:localStorage.getItem('nextPhase'),
+					email
 				}
 				console.log(queryData)
 				
@@ -238,6 +268,9 @@
 					 mui(this).button('reset');
 				})
 			});
+			mui(document.body).on('tap', '.cancel', function(e) { //取消按钮
+				mui.back() 
+			})
 		</script>
 	</body>
 
