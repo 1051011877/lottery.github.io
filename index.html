@@ -210,10 +210,10 @@
 					</div>
 				</div>
 				<div id="app" style="width: 100%;">
-					<div class="list-top" >
+					<!-- <div class="list-top" >
 						<span v-if="list[0]">下一期：{{list[0].phase+1}}期：</span>
 						<button @click="add" type="button" class="mui-btn mui-btn-primary mui-btn-outlined" style="height: 1.8rem;padding: 0 0.125rem;text-align: center;"><span class="mui-icon mui-icon mui-icon-plusempty"></span>添加预测</button>
-					</div>
+					</div> -->
 					<div class="list-top"  v-for="(item,index) in list">
 						<span>{{item.redBall.length===0? '下一期':'第'}}{{item.phase}}期：</span>
 						<div class="list">

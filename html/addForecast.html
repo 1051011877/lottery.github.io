@@ -48,7 +48,7 @@
 					<div class="mui-card-content" style="display: flex;flex-direction: row;">
 						<ul class="mui-table-view"> 
 							<li class="mui-table-view-cell mui-collapse">
-								<a class="mui-navigate-right" href="#" style="width: 95vw;">请选择红球</a>
+								<a class="mui-navigate-right redBallChecked" href="#" style="width: 95vw;height: 50px;display: flex;align-items: center;">请选择红球</a>
 								<div class="mui-collapse-content">
 									<div class="checkbox-list"></div>
 								</div>
@@ -58,7 +58,7 @@
 					<div class="mui-card-content" style="display: flex;flex-direction: row;">
 						<ul class="mui-table-view"> 
 							<li class="mui-table-view-cell mui-collapse">
-								<a class="mui-navigate-right" href="#" style="width: 95vw;">请选择蓝球</a>
+								<a class="mui-navigate-right blueBallChecked" href="#" style="width: 95vw;height: 50px;display: flex;align-items: center;">请选择蓝球</a>
 								<div class="mui-collapse-content">
 									<div class="checkbox-list-blue"></div>
 								</div>
@@ -208,13 +208,13 @@
 				for(var i = 0;i<33; i++) {
 					var div = document.createElement('div');
 					div.className = 'checkbox-item-top mui-input-row mui-checkbox';
-					div.innerHTML = '<div class="mui-input-row mui-checkbox checkbox-item"><span class="mui-badge mui-badge-danger">'+PrefixZero(i+1,2)+'</span> <input name="checkbox1" value="'+PrefixZero(i+1,2)+'" type="checkbox" /></div>';
+					div.innerHTML = '<div class="mui-input-row mui-checkbox checkbox-item"><span class="mui-badge mui-badge-danger">'+PrefixZero(i+1,2)+'</span> <input name="checkbox1" class="checkbox1" value="'+PrefixZero(i+1,2)+'" type="checkbox" /></div>';
 					checkboxRed.appendChild(div);
 				}
 				for(var i = 0;i<16; i++) {
 					var div = document.createElement('div');
 					div.className = 'checkbox-item-top mui-input-row mui-checkbox';
-					div.innerHTML = '<div class="mui-input-row mui-checkbox checkbox-item"><span class="mui-badge mui-badge-primary">'+PrefixZero(i+1,2)+'</span> <input name="checkbox2" value="'+PrefixZero(i+1,2)+'" type="checkbox"  /></div>';
+					div.innerHTML = '<div class="mui-input-row mui-checkbox checkbox-item"><span class="mui-badge mui-badge-primary">'+PrefixZero(i+1,2)+'</span> <input name="checkbox2" class="checkbox2" value="'+PrefixZero(i+1,2)+'" type="checkbox"  /></div>';
 					checkboxRed.appendChild(div);
 					checkboxBlue.appendChild(div);
 				}
@@ -268,6 +268,30 @@
 					 mui(this).button('reset');
 				})
 			});
+			mui(document.body).on('tap', '.checkbox1', function(e) { //红球change事件
+				if(e.target.checked===true){
+					var list=document.getElementById('redBallChecked'+e.target.value);   
+					list.remove(list);  
+					return
+				}
+				var redBallChecked = document.body.querySelector('.redBallChecked');
+				var span = document.createElement('span');
+				span.className = '';
+				span.innerHTML = '<span id="redBallChecked'+e.target.value+'" style="margin-left: 5px;" class="mui-badge mui-badge-danger">'+e.target.value+'</span>';
+				redBallChecked.appendChild(span);
+			})
+			mui(document.body).on('tap', '.checkbox2', function(e) { //蓝球change事件
+				if(e.target.checked===true){
+					var list=document.getElementById('blueBallChecked'+e.target.value);   
+					list.remove(list);  
+					return
+				}
+				var redBallChecked = document.body.querySelector('.blueBallChecked');
+				var span = document.createElement('span');
+				span.className = 'blueBallChecked'+e.target.value;
+				span.innerHTML = '<span id="blueBallChecked'+e.target.value+'" style="margin-left: 5px;" class="mui-badge mui-badge-primary">'+e.target.value+'</span>';
+				redBallChecked.appendChild(span);
+			})
 			mui(document.body).on('tap', '.cancel', function(e) { //取消按钮
 				mui.back() 
 			})
