@@ -1,5 +1,5 @@
-var prodServer = 'http://49.235.80.50:3000'
-
+//var prodServer = 'http://49.235.80.50:3000'
+var prodServer = 'http://localhost:3000'
 function getInfo(url,type,data){
 	return new Promise(function(resolve,reject) {
 		$.ajax({
