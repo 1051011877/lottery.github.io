@@ -228,6 +228,7 @@
 							 <span v-for="(item5,index5) in item3.redBall" class="mui-badge mui-badge-danger">{{item5}}</span>
 							 <span  v-for="(item4,index4) in item3.blueBall" class="mui-badge mui-badge-primary">{{item4}}</span>
 							 <span style="color: #E6A23C;">(预测)</span>
+							 <span v-if="item3.isSendEmail==='true'" class="mui-icon mui-icon-email" style="color: #67C23A; font-size: 25px;"></span>
 							</div>
 						</div>
 						<div class="list" v-for="(item2,index2) in Forecast"  ><!-- 前期的预测 -->
@@ -235,6 +236,7 @@
 							 <span v-for="(item5,index5) in item3.redBall" class="mui-badge mui-badge-danger">{{item5}}</span>
 							 <span  v-for="(item4,index4) in item3.blueBall" class="mui-badge mui-badge-primary ">{{item4}}</span>
 							 <span style="color: #E6A23C;">(预测)</span>
+							 <span v-if="item3.isSendEmail==='true'" class="mui-icon mui-icon-email" style="color: #67C23A; font-size: 25px;"></span>
 							</div>
 						</div>
 						<button @click="add" v-if="!item.phase" type="button" class="mui-btn mui-btn-primary mui-btn-outlined" style="height: 1.8rem;padding: 0 0.125rem;text-align: center;"><span class="mui-icon mui-icon mui-icon-plusempty"></span>添加预测</button>
