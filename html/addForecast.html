@@ -48,7 +48,7 @@
 					<div class="mui-card-content" style="display: flex;flex-direction: row;">
 						<ul class="mui-table-view"> 
 							<li class="mui-table-view-cell mui-collapse">
-								<a class="mui-navigate-right redBallChecked" href="#" style="width: 95vw;height: 50px;display: flex;align-items: center;">请选择红球</a>
+								<a class="mui-navigate-right redBallChecked" href="#" style="width: 95vw;height: 50px;display: flex;align-items: center;">点击选择红球</a>
 								<div class="mui-collapse-content">
 									<div class="checkbox-list"></div>
 								</div>
@@ -58,7 +58,7 @@
 					<div class="mui-card-content" style="display: flex;flex-direction: row;">
 						<ul class="mui-table-view"> 
 							<li class="mui-table-view-cell mui-collapse">
-								<a class="mui-navigate-right blueBallChecked" href="#" style="width: 95vw;height: 50px;display: flex;align-items: center;">请选择蓝球</a>
+								<a class="mui-navigate-right blueBallChecked" href="#" style="width: 95vw;height: 50px;display: flex;align-items: center;">点击选择蓝球</a>
 								<div class="mui-collapse-content">
 									<div class="checkbox-list-blue"></div>
 								</div>
@@ -70,6 +70,10 @@
 					        <label>邮箱地址：</label>
 					    <input type="email" name="email" class="mui-input-clear" placeholder="请输入邮箱地址">
 					    </div>
+						<div class="mui-input-row mui-checkbox " style="width: 80vw;">
+						  <label>是否邮件通知结果(仅下期)</label>
+						  <input name="checkbox3" class="checkbox3" value="" type="checkbox"  />
+						</div>
 					    <div class="mui-button-row">
 							<button type="button" class="mui-btn cancel mui-btn-danger" >取消</button>
 					        <button onclick="submit()" type="button" data-loading-icon-position="right" class="mui-btn submit mui-btn-primary">确认提交</button>
@@ -231,6 +235,7 @@
 			    mui(this).button('loading');
 				let checkboxRed =$('input[type=checkbox]:checked[name=checkbox1]');
 				let checkboxBlue = $('input[type=checkbox]:checked[name=checkbox2]');
+				let isSendEmail = $('.checkbox3')[0].checked;
 				let redList = []
 				let blueList = []
 				let email = $('input[type=email][name=email]').val()
@@ -258,7 +263,8 @@
 					blueBall:blueList,
 					redBall:redList,
 					phase:localStorage.getItem('nextPhase'),
-					email
+					email,
+					isSendEmail,
 				}
 				console.log(queryData)
 				

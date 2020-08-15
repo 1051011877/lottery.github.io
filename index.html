@@ -220,21 +220,21 @@
 							<div class="ball">
 							 <span v-for="(item1,index1) in item.redBall" class="mui-badge mui-badge-danger">{{item1}}</span>
 							 <span class="mui-badge mui-badge-primary">{{item.blueBall[0]}}</span>
-							 <span style="color: gainsboro;">(开奖)</span>
+							 <span style="color: #67C23A;">(开奖)</span>
 							</div>
 						</div>
 						<div class="list" v-for="(item2,index2) in Forecast" > <!-- 下一期的预测 -->
 							<div class="ball" v-for="(item3,index) in item2.forecast" v-if="!item.phase && item3.phase==(list[1].phase+1)">
 							 <span v-for="(item5,index5) in item3.redBall" class="mui-badge mui-badge-danger">{{item5}}</span>
 							 <span  v-for="(item4,index4) in item3.blueBall" class="mui-badge mui-badge-primary">{{item4}}</span>
-							 <span style="color: gainsboro;">(预测)</span>
+							 <span style="color: #E6A23C;">(预测)</span>
 							</div>
 						</div>
 						<div class="list" v-for="(item2,index2) in Forecast"  ><!-- 前期的预测 -->
 							<div class="ball" v-for="(item3,index) in item2.forecast" v-if="(Number(item.phase) === Number(item3.phase)) && item.phase">
 							 <span v-for="(item5,index5) in item3.redBall" class="mui-badge mui-badge-danger">{{item5}}</span>
 							 <span  v-for="(item4,index4) in item3.blueBall" class="mui-badge mui-badge-primary ">{{item4}}</span>
-							 <span style="color: gainsboro;">(预测)</span>
+							 <span style="color: #E6A23C;">(预测)</span>
 							</div>
 						</div>
 						<button @click="add" v-if="!item.phase" type="button" class="mui-btn mui-btn-primary mui-btn-outlined" style="height: 1.8rem;padding: 0 0.125rem;text-align: center;"><span class="mui-icon mui-icon mui-icon-plusempty"></span>添加预测</button>
